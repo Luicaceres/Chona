@@ -1,0 +1,53 @@
+*{
+	margin: 0;
+	padding: 0;
+ }
+
+ .color{
+	color:white;
+	font-size: 20px;
+	font-weight: 700;
+}
+
+ .sd:hover{
+ 	background:  #cf9d05;
+ 	border-radius: 10px;
+ 	transition: .5s;
+ }
+
+ .cerrar:hover{
+	background: #e80f00;
+	border-radius: 10px;
+	transition: .5s;
+}
+
+ thead, tbody{
+ 	text-align: center;
+ }
+
+ .containernav{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+ border:solid blue
+ }
+ .hola{
+	background-color: aquamarine;
+	align-items: end;
+	width: 300px;
+ }
+ .cerrarsesion{
+	margin-right: 0px;
+ }
+
+ .clmbuton{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+    padding: 5px 10px;
+	align-items: center;
+ }
+ .espacio{
+	width: 45%;
+	display: block;
+ }
