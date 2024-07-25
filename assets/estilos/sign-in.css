@@ -117,3 +117,8 @@ h1{
 .bd-mode-toggle .dropdown-menu .active .bi {
   display: block !important;
 }
+
+.form-registro {
+  max-width: 660px;
+  padding: 1rem;
+}
