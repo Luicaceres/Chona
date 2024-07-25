@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-bs-theme="auto">
+<html lang="es" data-bs-theme="auto">
 
 <head>
 
@@ -27,8 +27,8 @@
 
   
 
-  <nav class="navbar navbar-expand-lg navbar-light bg-warning">
-		  <a class="navbar-brand" href="http://localhost/proyecto/Chona/pages/index.php"><img src="../assets/logo/logo-chona.png" width="30px" height="30px" class="d-inline-block align-top"> <span style="color:white;  font-family: MV boli;">La tiendita de Chona</span></a>
+<nav class="navbar navbar-expand-sm navbar-light bg-warning">
+		  <a class="navbar-brand" href="../index.php"><img src="../assets/logo/logo-chona.png" width="30px" height="30px" class="d-inline-block align-top"> <span style="color:white;  font-family: MV boli;">La tiendita de Chona</span></a>
 		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 		    <span class="navbar-toggler-icon"></span>
 		  </button>
@@ -53,7 +53,7 @@
         <div class = "contenedor-img">
           <img class="mb-3" src="../assets/logo/logo-chona.png" alt="" width="102px" height="87px">
 
-          <h1 class="h3 mb-3 fw-normal m-auto">Inicia Seción</h1>
+          <h1 class="h3 mb-3 fw-normal m-auto">Inicia Sesión</h1>
         </div>
   
         <div class="form-floating">

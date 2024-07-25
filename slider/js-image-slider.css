@@ -7,14 +7,14 @@
 #sliderFrame 
 {
     position:relative;
-    width:1000px;
+    width: 100%;
     margin: 0 auto; /*center-aligned*/
-    height: 404px;
+    height: 75%;
 }
 
 #slider, #slider div.sliderInner {
-    width:1000px;height:380px;/* Must be the same size as the slider images */
-    border-radius: 6px;
+    width:80%;height:340px;/* Must be the same size as the slider images */
+    border-radius: 1px;
 }
 
 #slider {

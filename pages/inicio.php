@@ -12,8 +12,10 @@ if(!isset($_SESSION['loggedin'])) {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>La tiendita de Chona</title>
 	<link rel="stylesheet" type="text/css" href="../assets/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="../assets/bootstrap/fonts/font-awesome.css">
@@ -26,14 +28,13 @@ if(!isset($_SESSION['loggedin'])) {
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-warning  ">
+<!--nav class="navbar navbar-expand-lg navbar-light   ">
       
-       <a class="navbar-brand" href="inicio.php"><img src="../assets/logo/logo-chona.png" width="30px" height="30px" class="d-inline-block align-top">
-              <span style="color:white;  font-family: MV boli;">La tiendita de Chona</span>
-       </a>
-       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+       
+            
+       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="navbarNav" aria-controls="#navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 	       <span class="navbar-toggler-icon"></span>
-	</button>
+		</button>
        
 	<div class="collapse navbar-collapse" id="navbarNav">
 	  <ul class="navbar-nav">
@@ -63,6 +64,44 @@ if(!isset($_SESSION['loggedin'])) {
        </div>
                 
 
+</nav-->
+<nav class="navbar navbar-expand-lg bg-warning">
+  <div class="container-fluid">
+    
+	<a class="navbar-brand" href="inicio.php"><img src="../assets/logo/logo-chona.png" width="30px" height="30px" class="d-inline-block align-top">
+	<span style="color:white;  font-family: MV boli;">La tiendita de Chona</span>
+	</a>
+	<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarScroll">
+      <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+        <li class="nav-item">
+		  <a class="nav-link color  sd " aria-current="page" href="./products.php" style="white">Productos</a>
+        </li>
+        <li class="nav-item">
+		  <a class="nav-link sd color" href="./cart.php" style="white">Carrito</a>
+        </li>
+		
+		</ul>
+			<ul class="navbar-nav   navbar-nav-scroll ">
+				
+				<li class="nav-item  ">
+					<a class="nav-link" href="./perfil.php" style="white"> 
+						<span class ="h5" style="color:black;">
+							Bienvenido <?= $_SESSION['nombre'] ?> <?= $_SESSION['apellido'] ?> 
+						</span>
+					</a>
+				</li>
+				<li class="nav-item ">
+					<a class="nav-link cerrar btn btn-outline-danger color " href="../php/cerrar_sesion.php" >Cerrar Sesion</a>
+				</li>
+				
+			</ul>
+	   
+		
+    </div>
+  </div>
 </nav>
 
 
@@ -97,8 +136,8 @@ if(!isset($_SESSION['loggedin'])) {
 		</div>
 	</div>
 
-<script src="../bootstrap/jquery-3.3.1.min.js"></script>
-<script type="text/javascript" src="../bootstrap/js/bootstrap.js"></script>
+<script src="../assets/bootstrap/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="../assets/bootstrap/js/bootstrap.js"></script>
 <script src="../slider/js-image-slider.js"></script>
 
 </body>
