@@ -59,7 +59,7 @@ if(!isset($_SESSION['loggedin'])) {
         
         <div class = "container text-center m-auto d-flex form-registro w-500 m-auto">
 
-            <form class= "mt-5" action="../php/crearusu.php" method="post">
+            <form class= "mt-5" action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
 
                 
                 <div class="mb-3 row align-items-end">
