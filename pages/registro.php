@@ -5,7 +5,11 @@ include "../php/conection.php";
 
 if(!isset($_SESSION['loggedin'])) {
 
-    print_r($_SESSION);
+   // print_r($_GET);
+   // print_r($_SERVER["REQUEST_METHOD"]);
+   
+    
+  
 
     if(isset($_POST['Enviar'])) {
         $nombre = $_POST['Nombre'];
@@ -14,7 +18,7 @@ if(!isset($_SESSION['loggedin'])) {
         $zona =  $_POST['Zona'];
         $email = $_POST['Email'];
         $contr = $_POST['Contraseña'];
-        $r = 0;
+        $r = $_POST['r']; 
                 
     };
     ?>
@@ -59,7 +63,7 @@ if(!isset($_SESSION['loggedin'])) {
         
         <div class = "container text-center m-auto d-flex form-registro w-500 m-auto">
 
-            <form class= "mt-5" action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
+            <form class= "mt-5" action="../php/validarformulario.php" method="post">
 
                 
                 <div class="mb-3 row align-items-end">
@@ -103,16 +107,15 @@ if(!isset($_SESSION['loggedin'])) {
                     </div>
 
                     </div>
-
+                    <input id="r" name="r" type="hidden" value="<?php if(isset($r)) ?>" />
                     <div class="col col-sm-3 m-auto">
+                        
                     <button class="btn btn-primary w-100 py-2" type="submit" name="Enviar">Enviar</button>
                     </div>
                     
-                    <?php
-                        include("../php/validarformulario.php")
-                    ?>
-                    
-
+                    <?php foreach ($_GET as $a => $b) {
+                        echo '<div class="alert alert-danger mt-3" role="alert">' .  $b  . ' </div>';
+                    }?>        
                 </div>
 
 
