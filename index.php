@@ -38,7 +38,13 @@
   </div>
 </nav>
 
-
+ <?php
+		if (isset($_GET))
+		{
+			foreach($_GET as $a => $b)
+			echo '<div class="alert alert-success mt-3" role="alert">' .  $b  . ' </div>';
+		}
+ ?>
 
 <div class="container" style="background: #F8F9E4; ">
 	<div class="row">

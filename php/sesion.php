@@ -53,8 +53,8 @@ if ($stmt->num_rows > 0) {
 
     // se confirma que la cuenta existe ahora validamos la contraseña
     
-
-    if ($_POST['floatingPassword'] === $password) {
+    
+    if (password_verify($_POST['floatingPassword'], $password)) {
       //  print_r($stmt);
         $consulta=("Select * from usuarios WHERE id = $id ");
         $sentencia=mysqli_query($conexion,$consulta);

@@ -1,15 +1,20 @@
 <?php
+session_start();
+include "../php/conection.php";
 
-//print_r($_POST);
+
+//print_r($con);
 
 
-function validarformulario($datos) 
+function validarformulario($datos,$con) 
 {
+    echo "<div>  a  </div>";
+    print_r($datos );
     $errores = [];
         
         if (isset($_POST['Enviar'])) 
         {
-            if(empty($datos['nombre'])) 
+            if(empty($datos['Nombre'])) 
             {
                 
                 
@@ -19,7 +24,7 @@ function validarformulario($datos)
                 
                     
                     
-            } else{ if(strlen($datos['nombre']) > 20)
+            } else{ if(strlen($datos['Nombre']) > 20)
                     {
                       
                         $errores[] = "El nombre es muy largo";
@@ -29,61 +34,84 @@ function validarformulario($datos)
             }
 
                 
-            if(empty($datos['apellido'])) 
+            if(empty($datos['Apellido'])) 
             {
                 $errores[]  =  "El apellido no puede estar Vacio"; 
                     
                      
-            }else{ if(strlen($datos['apellido']) > 20) {
+            }else{ if(strlen($datos['Apellido']) > 20) {
                 
                 $errores[] = "El nombre es muy largo";
                     
                      
                     }
             }
-
-            if(empty($datos['numtlf'])) 
-            {
-                $errores[] ="El numero de telefono no puede estar Vacio";
+                echo "numtelef";
+            // if(empty($datos['Numtlf'])) 
+            // {
+            //     echo $datos['Numtlf'];
+            //     $errores[] ="El numero de telefono no puede estar Vacio";
+            //         echo "numtelef2";
                     
+            // }else{if(!is_numeric($datos['Numtlf'])) {
                     
-            }else{if(!is_numeric($datos['numtlf'])) {
+            //         $errores[] = "Debe ser un numero de telefono";
                     
-                    $errores[] = "Debe ser un numero de telefono";
+            //         echo "numtelef3";
                     
-                    
-                    }else
-                            $n =  $datos['numtlf'];
-                    $validartlf = "SELECT * FROM USUARIOS WHERE NumTelf = '$n' ";
-                    $Validando1 = $con->query($validartlf);
-                    if($Validando1->num_rows > 0){
-                        $errores[] =  "Numero de telefono ya existe";
+            //         }else{if(strlen($datos['Numtlf']) !== 12) {
+            //             return "El número de teléfono debe tener 12 dígitos.";
+            //         }
+            //         else{
+            //         print_r($con);
+            //                 $n =  $datos['Numtlf'];
+            //         $validartlf = "SELECT * FROM USUARIOS WHERE NumTelf = '$n' ";
+            //         $Validando1 = $con->query($validartlf);
+            //         if($Validando1->num_rows > 0){
+            //             $errores[] =  "Numero de telefono ya existe";
                         
                         
-                    }
+            //         }
                 
 
+            // }
+            if (empty($datos['Numtlf'])) {
+                $errores[] = "El número de teléfono no puede estar vacío";
+            } elseif (!is_numeric($datos['Numtlf'])) {
+                $errores[] = "Debe ser un número de teléfono";
+            } elseif (strlen($datos['Numtlf']) !== 11) {
+                $errores[] = "El número de teléfono debe tener 12 dígitos.";
+            } else {
+                // Preparar la consulta para evitar inyecciones SQL
+                $stmt = $con->prepare("SELECT * FROM USUARIOS WHERE NumTelf = ?");
+                $stmt->bind_param("s", $datos['Numtlf']);
+                $stmt->execute();
+                $result = $stmt->get_result();
+            
+                if ($result->num_rows > 0) {
+                    $errores[] = "Número de teléfono ya existe";
+                }
             }
 
-            if(empty($datos['zona'])) 
+            if(empty($datos['Zona'])) 
             {
                 $errores[] ="La direccion no puede estar Vacia";
                  
-            }else{ if(strlen($datos['zona']) > 149) {
+            }else{ if(strlen($datos['Zona']) > 149) {
                 $errores[] ="La Direccion es muy larga";
                  
                     
                     }
             }
-            if(empty($datos['email'])) {
+            if(empty($datos['Email'])) {
                 $errores[] = "El Email no puede estar Vacio";
                     
                     
-            }else   {if(!filter_var($datos['email'], FILTER_VALIDATE_EMAIL)) {
+            }else   {if(!filter_var($datos['Email'], FILTER_VALIDATE_EMAIL)) {
                         $errores[] = "Correo Incorrecto";
                         
                     }else
-                            $e = $datos['email'];
+                            $e = $datos['Email'];
                             $validaremail = "SELECT * FROM USUARIOS WHERE EMAIL = '$e' ";
                             $Validando = $con->query($validaremail);
                             if($Validando->num_rows > 0){
@@ -93,16 +121,13 @@ function validarformulario($datos)
                     }
             }
                 
-            if(empty($datos['contr'])) {
-                $errores[] = "La contraseña no puede estar Vacia";
-                   
-            }else{ if(strlen($datos['contr']) > 49 ) {
-                $errores[] ="Contraseña demaciado larga";
-            
-                 
+            if (empty($datos['Contraseña'])) {
+                $errores[] = "La contraseña no puede estar vacía";
+            } elseif (strlen($datos['Contraseña']) < 8) {
+                $errores[] = "La contraseña debe tener al menos 8 caracteres";
+            } elseif (strlen($datos['Contraseña']) > 19) {
+                $errores[] = "La contraseña es demasiado larga";
             }
-
-        }
 
 
     return $errores;
@@ -111,20 +136,25 @@ function validarformulario($datos)
 //print_r($_SERVER["REQUEST_METHOD"]);
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-    $datos = $_POST;
-    //print_r($datos);
+    $datos = $_POST; 
     
-    $errores = validarformulario($datos);
+    print_r($datos);
     
+    
+    
+    $errores = validarformulario($datos, $con);
+    echo "<div>  a  </div>";
+    print_r($errores);
+
     //print_r($errores);
     
 
     if (empty($errores)) {
         // Si no hay errores, inserta los datos en la base de datos
     
+        $_SESSION = $datos;
 
-
-        header("Location: ../pages/exito.php"); // Redirige a la página de éxito
+        header("Location: ../php/crearusu.php"); // Redirige a la página de éxito
     } else {
         // Si hay errores, muestra los mensajes y vuelve a cargar la página de registro
         foreach ($errores as $error) {
@@ -136,7 +166,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }
         $prueba = http_build_query($errores);
        
-   header("Location: ../pages/registro.php?$prueba");    
+ header("Location: ../pages/registro.php?$prueba");    
     }
 }
 

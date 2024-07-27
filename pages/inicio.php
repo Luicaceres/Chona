@@ -8,6 +8,8 @@ if(!isset($_SESSION['loggedin'])) {
        exit;
 }
 
+	print_r($_SESSION);
+	print_r($_SESSION['usu'])	;
 
 ?>
 
@@ -76,12 +78,31 @@ if(!isset($_SESSION['loggedin'])) {
     </button>
     <div class="collapse navbar-collapse" id="navbarScroll">
       <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-        <li class="nav-item">
-		  <a class="nav-link color  sd " aria-current="page" href="./products.php" style="white">Productos</a>
-        </li>
-        <li class="nav-item">
-		  <a class="nav-link sd color" href="./cart.php" style="white">Carrito</a>
-        </li>
+	  <?php
+	  		
+			if($_SESSION['usu'] ==='0'){
+			echo ' <li class="nav-item">
+				 <a class="nav-link color  sd " aria-current="page" href="./products.php" style="white">Productos</a>
+       			 </li>';
+
+			}else{
+				echo ' <li class="nav-item">
+				 <a class="nav-link color  sd " aria-current="page" href="./lista_products.php" style="white">Lista de productos</a>
+       			 </li>';
+
+			};
+		?>
+       
+        
+		<?php
+			if($_SESSION['usu'] ==='0'){
+			echo ' <li class="nav-item">
+		 	 <a class="nav-link sd color" href="./cart.php" style="white">Carrito</a>
+       			 </li>';
+
+			};
+		?>
+       
 		
 		</ul>
 			<ul class="navbar-nav   navbar-nav-scroll ">

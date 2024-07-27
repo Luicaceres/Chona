@@ -10,7 +10,7 @@ if(!isset($_SESSION['loggedin'])) {
        exit;
 }
 
-include "../php/conection.php";;
+include "../php/conection.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
