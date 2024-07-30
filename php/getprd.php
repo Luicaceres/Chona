@@ -11,8 +11,8 @@ if(!isset($_SESSION['loggedin'])) {
 include "../php/conection.php";
 
 
-print_r($_POST);
-$ID = $con->real_escape_string($_POST['id']);
+
+$ID = $_POST['id'];
 
 $sql = "SELECT id, name  , price from product where id=$ID limit 1";
 

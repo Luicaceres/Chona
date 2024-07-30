@@ -12,6 +12,9 @@ if(!isset($_SESSION['loggedin'])) {
 }
 
 include "../php/conection.php";
+print_r($_SESSION);
+$dir ='../assets/img/';
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -90,18 +93,24 @@ include "../php/conection.php";
 */
 $products = $con->query("select * from product");
 ?>
-<table class="table-sm table-striped table-bordered table-condensed table-hover h5" width="100%">
-<thead class="bg-info">
+<table class="table table-hover table-sm table-condensed  table-bordered table-responsive  h5" width="100%">
+<thead class="table-info ">
+	<th>Imagen</th>
 	<th>Producto</th>
-	<th>Precio</th>
+	<th>Precio x KG</th>
 	<th>Accion</th>
 </thead>
 <?php 
 /*
 * Apartir de aqui hacemos el recorrido de los productos obtenidos y los reflejamos en una tabla.
 */
-while($r=$products->fetch_object()):?>
+while($r=$products->fetch_object()):
+
+	$R_ID = $r->id;
+	$R_PR = $r->price;
+	$R_PD = $r->name;   ?>
 <tr>
+	<td> <img src= "<?php echo $dir . $R_ID; ?>.jpg" width="100px">  </td> 
 	<td><?php echo $r->name;?></td>
 	<td>$ <?php echo $r->price; ?></td>
 	<td style="width:245px;">
@@ -113,16 +122,16 @@ while($r=$products->fetch_object()):?>
 	
 	?>
 	<?php if($found):?>
-		<a href="./cart.php" class="btn btn-info">Agregado</a>
+		<a href="./cart.php" class="btn btn-primary">Agregado</a>
 	<?php else:?>
 	<form class="form-inline" method="post" action="../php/addtocart.php">
 		<input type="hidden" name="product_id" value="<?php echo $r->id; ?>">
 		<section class="clmbuton">
 
-			<div class="form-group espacio">
+			<div class="form-group espacio d-flex mx-auto">
 				<input type="number" name="q" value="1"  min="1" class="form-control" placeholder="Cantidad">
 			</div>
-			<div class=" espacio">
+			<div class=" espacio d-flex mx-auto">
 
 				<button type="submit" class="btn btn-success"><i class="fa fa-plus-circle"></i> Agregar</button>
 			</div>

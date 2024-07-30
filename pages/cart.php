@@ -11,6 +11,7 @@ if(!isset($_SESSION['loggedin'])) {
 }
 
 include "../php/conection.php";
+print_r($_SESSION);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -80,11 +81,11 @@ include "../php/conection.php";
 $products = $con->query("select * from product");
 if(isset($_SESSION["cart"]) && !empty($_SESSION["cart"])):
 ?>
-<table class="table-sm table-striped table-bordered  table-hover" width="100%">
-<thead class="bg-info">
-	<th>Cantidad</th>
+<table class="table table-hover table-sm table-condensed  table-bordered table-responsive  h5" width="100%">
+<thead class="table-info">
+	<th>Peso x KG</th>
 	<th>Producto</th>
-	<th>Precio Unitario</th>
+	<th>Precio x KG</th>
 	<th>Total</th>
 	<th>Accion</th>
 </thead>
@@ -115,9 +116,9 @@ $r = $products->fetch_object();
 <form class="form-horizontal" method="post" action="../php/process.php">
 <table class="table-sm">
 	<tr>
-		<td><label for="email">Email del Cliente</label></td>
-		<td><input type="email" name="email" required class="form-control" id="inputEmail3" placeholder="Email del cliente"></td>
-		<td><button type="submit" class="btn btn-success"><img src="img/tick.png" width="20px" height="20px"> Procesar Venta</button></td>
+		<td><label for="email" >Email del Cliente</label></td>
+		<td><input type="email" name="email" required class="form-control" id="inputEmail3" placeholder="Email del cliente" value="<?php echo $_SESSION['email'];?>"></td>
+		<td><button type="submit" class="btn btn-success"><img src="../assets/img/tick.png" width="20px" height="20px"> Procesar Venta</button></td>
 	</tr>
 </table>
  </form>

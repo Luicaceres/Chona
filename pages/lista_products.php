@@ -9,7 +9,9 @@ if(!isset($_SESSION['loggedin'])) {
 }
 
 include "../php/conection.php";
-print_r($_SESSION)
+print_r($_SESSION);
+
+$dir ='../assets/img/';
 
 
 ?>
@@ -89,6 +91,18 @@ print_r($_SESSION)
   </div>
 </nav>
 
+ <hr>
+<?php if (isset($_SESSION['msg']) && isset($_SESSION['color'])) { ?>
+            <div class="alert alert-<?= $_SESSION['color']; ?> alert-dismissible fade show" role="alert">
+                <?= $_SESSION['msg']; ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+
+        <?php
+            unset($_SESSION['color']);
+            unset($_SESSION['msg']);
+        } ?>
+
 <div class="container"  style="height: 100%">
 	<div class="row">
 		<div class="col-md-12 mt-5 ">
@@ -111,7 +125,8 @@ $products = $con->query("select * from product");
 <!-- table-sm table-striped table-bordered table-condensed table-hover h5 -->
 <table class="table table-hover table-sm table-condensed  table-bordered table-responsive  h5" table-bordered table-sm  table-condensed table-hover  h5 " width="100%">
 <thead class="table-info ">
-       <th>ID</th>
+	<th>ID</th>
+	<th>Imagen</th>
 	<th>Producto</th>
 	<th>Precio</th>
 	<th>Accion</th>
@@ -129,48 +144,18 @@ $R_PR = $r->price;
 $R_PD = $r->name;
 
 
-echo "$R_ID";
+
 
 ?>
 <tr>
-       <td ><?php echo $r->id;?></td>
+
+	<td ><?php echo $r->id;?></td>
+	<td> <img src= "<?php echo $dir . $R_ID; ?>.jpg" width="100px">  </td> 
 	<td><?php echo $r->name;?></td>
 	<td>$ <?php echo $r->price; ?></td>
 	<td> <a href="#" class="btn btn-sm btn-warning" name ="Cambiar" data-bs-toggle="modal" data-bs-target="#editarModal" data-bs-id="<?php echo $R_ID ;?>"><i class="fa fa-plus-circle"></i> Cambiar </a>
-	     	
-		<a href=""type="submit" class="btn btn-sm btn-danger" name = "Desactivar"><i class="fa fa-chain-broken"></i> Desactivar</a>
+	<a href="#" class="btn btn-sm btn-danger" name = "eliminar" data-bs-toggle="modal" data-bs-target="#eliminaModal" data-bs-id="<?php echo $R_ID ;?>" ><i class="fa fa-chain-broken"></i> Eliminar</a>
 	</td>
-	<!-- <td style="width:245px;">
-	
-	<?php
-	// $found = false;
-       
-	// if(isset($_SESSION["cart"])){ foreach ($_SESSION["cart"] as $c) { if($c["product_id"]==$r->id){ $found=true; break; }}}
-	// print_r($found);
-	
-	?>
-	<?php// if($found):?>
-		<a href="./cart.php" class="btn btn-info">Agregado</a>
-	<?php //else:?>
-	<form class="form-inline" method="post" action="../php/update_prd.php">
-		<input type="hidden" name="product_id" value="<?php //echo $r->id; ?>">
-		<section class="clmbuton">
-
-			
-			<div class=" espacio">
-
-                     <a href="./editar.php" class="btn btn-warning" name ="Cambiar" data-bs-toggle="modal" data-bs-target="#editarModal" data-id="<?php echo $r->id; ?>"><i class="fa fa-plus-circle"></i> Cambiar</a>
-		       </div>
-                     <div class=" espacio">
-
-				<button </button>
-			</div>
-		</section>
-
-		
-	</form>	
-	<?php// endif; ?>
-	</td> -->
 </tr>
 <?php endwhile; ?>
 </table>
@@ -190,46 +175,68 @@ echo "$R_ID";
 <?php
        include "./agregar.php";
        include "./editar.php";
+	   include "./Elimina.php";
 ?>
 
+
 <script>
-	let editarModal = document.getElementById('editarModal');
+        let NuevoModal = document.getElementById('NuevoModal')
+        let editarModal = document.getElementById('editarModal')
+        let eliminaModal = document.getElementById('eliminaModal')
 
-	editarModal.addEventListener('shown.bs.modal', event =>{
-		let button = event.relatedTarget
-		let id = button.getAttribute('data-bs-id')
+        NuevoModal.addEventListener('shown.bs.modal', event => {
+			NuevoModal.querySelector('.modal-body #nombre').focus()
+        })
 
+    	 NuevoModal.addEventListener('hide.bs.modal', event => {
+			NuevoModal.querySelector('.modal-body #Producto').value = ""
+			NuevoModal.querySelector('.modal-body #Precio').value = ""
+			NuevoModal.querySelector('.modal-body #Imagen').value = ""
+         })
 
-		let inputId = editarModal.querySelector('.modal-body #id')
-		let inputProducto = editarModal.querySelector('.modal-body #Producto')
-		let inputPrecio = editarModal.querySelector('.modal-body #Precio')
-		//let inputImagen = editarModal.querySelector('.modal-body #Imagen')
-		
-		let url = "../php/getprd.php"
-		let formData = new FormData()
-		formData.append('id', id);
+         editarModal.addEventListener('hide.bs.modal', event => {
+             editarModal.querySelector('.modal-body #nombre').value = ""
+             editarModal.querySelector('.modal-body #descripcion').value = ""
+             editaModal.querySelector('.modal-body #genero').value = ""
+             editarModal.querySelector('.modal-body #id_imagen').value = ""
+             editaModal.querySelector('.modal-body #Imagen').value = ""
+         })
 
+        editarModal.addEventListener('shown.bs.modal', event => {
+            let button = event.relatedTarget
+            let id = button.getAttribute('data-bs-id')
 
-		fetch(url, {
-			method: "POST",
-			headers: {
-				'Content-Type': 'application/json' // Set the correct header
-			},
-			body: FormData
-		}).then(response => response.json()
-		
-	    ).then(data => {
-			console.log("data:", data);
-			inputId.value = data.id
-			inputProducto.value = data.name
-			inputPrecio.value = data.price
-		}).catch(err => console.log("el error es :",err))
-		
+            let inputId = editarModal.querySelector('.modal-body #id')
+            let inputProducto = editarModal.querySelector('.modal-body #Producto')
+            let inputPrecio = editarModal.querySelector('.modal-body #Precio')
+            let imagen = editarModal.querySelector('.modal-body #id_imagen')
 
-	})
+            let url = "../php/getprd.php"
+            let formData = new FormData()
+            formData.append('id', id)
 
+            fetch(url, {
+                    method: "POST",
+                    body: formData
+                }).then(response => response.json())
+                .then(data => {
 
-</script>
+                    inputId.value = data.id
+                    inputProducto.value = data.name
+                    inputPrecio.value = data.price
+					imagen.src = '<?php echo "$dir";?>' + data.id + '.jpg'
+                 
+
+                }).catch(err => console.log(err))
+
+        })
+
+             eliminaModal.addEventListener('shown.bs.modal', event => {
+     		 let button = event.relatedTarget
+             let id = button.getAttribute('data-bs-id')
+             eliminaModal.querySelector('.modal-footer #id').value = id
+         })
+    </script>
 
 
 <script src="../bootstrap/jquery-3.3.1.min.js"></script>
