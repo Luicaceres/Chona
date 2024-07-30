@@ -10,6 +10,7 @@ $Zona = $_SESSION["Zona"];
 $Email = $_SESSION["Email"];
 $tipo = 0;
 $Contrasena = password_hash($_SESSION["Contraseña"], PASSWORD_BCRYPT);
+print_r($Contrasena);
 
 $crear = "INSERT INTO usuarios (Nombre, Apellido, NumTelf, Email, Zona, Tipusu, Password) VALUES (?, ?, ?, ?, ?, ?, ?)";
 $stmt = $con->prepare($crear);

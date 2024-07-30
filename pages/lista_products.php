@@ -121,42 +121,56 @@ $products = $con->query("select * from product");
 * Apartir de aqui hacemos el recorrido de los productos obtenidos y los reflejamos en una tabla.
 */
 
-while($r=$products->fetch_object()):;?>
+while($r=$products->fetch_object()):;
 
+
+$R_ID = $r->id;
+$R_PR = $r->price;
+$R_PD = $r->name;
+
+
+echo "$R_ID";
+
+?>
 <tr>
        <td ><?php echo $r->id;?></td>
 	<td><?php echo $r->name;?></td>
 	<td>$ <?php echo $r->price; ?></td>
-	<td style="width:245px;">
+	<td> <a href="#" class="btn btn-sm btn-warning" name ="Cambiar" data-bs-toggle="modal" data-bs-target="#editarModal" data-bs-id="<?php echo $R_ID ;?>"><i class="fa fa-plus-circle"></i> Cambiar </a>
+	     	
+		<a href=""type="submit" class="btn btn-sm btn-danger" name = "Desactivar"><i class="fa fa-chain-broken"></i> Desactivar</a>
+	</td>
+	<!-- <td style="width:245px;">
+	
 	<?php
-	$found = false;
+	// $found = false;
        
-	if(isset($_SESSION["cart"])){ foreach ($_SESSION["cart"] as $c) { if($c["product_id"]==$r->id){ $found=true; break; }}}
-	print_r($found);
+	// if(isset($_SESSION["cart"])){ foreach ($_SESSION["cart"] as $c) { if($c["product_id"]==$r->id){ $found=true; break; }}}
+	// print_r($found);
 	
 	?>
-	<?php if($found):?>
+	<?php// if($found):?>
 		<a href="./cart.php" class="btn btn-info">Agregado</a>
-	<?php else:?>
+	<?php //else:?>
 	<form class="form-inline" method="post" action="../php/update_prd.php">
-		<input type="hidden" name="product_id" value="<?php echo $r->id; ?>">
+		<input type="hidden" name="product_id" value="<?php //echo $r->id; ?>">
 		<section class="clmbuton">
 
 			
 			<div class=" espacio">
 
-                     <a href="./editar.php" class="btn btn-warning" name ="Cambiar" data-bs-toggle="modal" data-bs-target="#editarModal"><i class="fa fa-plus-circle"></i> Cambiar</a>
+                     <a href="./editar.php" class="btn btn-warning" name ="Cambiar" data-bs-toggle="modal" data-bs-target="#editarModal" data-id="<?php echo $r->id; ?>"><i class="fa fa-plus-circle"></i> Cambiar</a>
 		       </div>
                      <div class=" espacio">
 
-				<button type="submit" class="btn btn-danger" name = "Desactivar"><i class="fa fa-chain-broken"></i> Desactivar</button>
+				<button </button>
 			</div>
 		</section>
 
 		
 	</form>	
-	<?php endif; ?>
-	</td>
+	<?php// endif; ?>
+	</td> -->
 </tr>
 <?php endwhile; ?>
 </table>
@@ -177,6 +191,45 @@ while($r=$products->fetch_object()):;?>
        include "./agregar.php";
        include "./editar.php";
 ?>
+
+<script>
+	let editarModal = document.getElementById('editarModal');
+
+	editarModal.addEventListener('shown.bs.modal', event =>{
+		let button = event.relatedTarget
+		let id = button.getAttribute('data-bs-id')
+
+
+		let inputId = editarModal.querySelector('.modal-body #id')
+		let inputProducto = editarModal.querySelector('.modal-body #Producto')
+		let inputPrecio = editarModal.querySelector('.modal-body #Precio')
+		//let inputImagen = editarModal.querySelector('.modal-body #Imagen')
+		
+		let url = "../php/getprd.php"
+		let formData = new FormData()
+		formData.append('id', id);
+
+
+		fetch(url, {
+			method: "POST",
+			headers: {
+				'Content-Type': 'application/json' // Set the correct header
+			},
+			body: FormData
+		}).then(response => response.json()
+		
+	    ).then(data => {
+			console.log("data:", data);
+			inputId.value = data.id
+			inputProducto.value = data.name
+			inputPrecio.value = data.price
+		}).catch(err => console.log("el error es :",err))
+		
+
+	})
+
+
+</script>
 
 
 <script src="../bootstrap/jquery-3.3.1.min.js"></script>
