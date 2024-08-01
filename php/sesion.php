@@ -25,7 +25,7 @@ if (mysqli_connect_error()) {
 }
 
 // Se valida si se ha enviado información, con la función isset()
-//print_r($_POST);
+
 
 
 if (isset($_POST['imail'], $_POST['floatingPassword'])) {
@@ -53,9 +53,6 @@ if ($stmt->num_rows > 0) {
     $stmt->bind_result($id, $password);
     $stmt->fetch();
 
-
-    //print_r($stmt->fetch());
-    //print_r($password);
     if (password_verify($_POST['floatingPassword'], $password)){
         $v = 'paso' ;
         echo "v es: '$v'" ;
@@ -64,20 +61,20 @@ if ($stmt->num_rows > 0) {
         echo "v es: '$v'" ;
     };
 
-    print_r($_SESSION);
+
 
 
     // se confirma que la cuenta existe ahora validamos la contraseña
     
     
     if (password_verify($_POST['floatingPassword'], $password)) {
-      //  print_r($stmt);
+
         $consulta=("Select * from usuarios WHERE id = $id ");
         $sentencia=mysqli_query($conexion,$consulta);
         $resultado= mysqli_fetch_array($sentencia);
         // la conexion sería exitosa, se crea la sesión
 
-        //print_r($_SESSION);
+
 
         session_regenerate_id();
         $_SESSION['loggedin'] = TRUE;

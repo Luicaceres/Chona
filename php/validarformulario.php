@@ -3,13 +3,13 @@ session_start();
 include "../php/conection.php";
 
 
-//print_r($con);
+
 
 
 function validarformulario($datos,$con) 
 {
     echo "<div>  a  </div>";
-    print_r($datos );
+
     $errores = [];
         
         if (isset($_POST['Enviar'])) 
@@ -47,34 +47,8 @@ function validarformulario($datos,$con)
                     }
             }
                 echo "numtelef";
-            // if(empty($datos['Numtlf'])) 
-            // {
-            //     echo $datos['Numtlf'];
-            //     $errores[] ="El numero de telefono no puede estar Vacio";
-            //         echo "numtelef2";
-                    
-            // }else{if(!is_numeric($datos['Numtlf'])) {
-                    
-            //         $errores[] = "Debe ser un numero de telefono";
-                    
-            //         echo "numtelef3";
-                    
-            //         }else{if(strlen($datos['Numtlf']) !== 12) {
-            //             return "El número de teléfono debe tener 12 dígitos.";
-            //         }
-            //         else{
-            //         print_r($con);
-            //                 $n =  $datos['Numtlf'];
-            //         $validartlf = "SELECT * FROM USUARIOS WHERE NumTelf = '$n' ";
-            //         $Validando1 = $con->query($validartlf);
-            //         if($Validando1->num_rows > 0){
-            //             $errores[] =  "Numero de telefono ya existe";
-                        
-                        
-            //         }
-                
-
-            // }
+       
+      
             if (empty($datos['Numtlf'])) {
                 $errores[] = "El número de teléfono no puede estar vacío";
             } elseif (!is_numeric($datos['Numtlf'])) {
@@ -133,20 +107,19 @@ function validarformulario($datos,$con)
     return $errores;
 }
 
-//print_r($_SERVER["REQUEST_METHOD"]);
+
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     $datos = $_POST; 
-    
-    print_r($datos);
+  
     
     
     
     $errores = validarformulario($datos, $con);
     echo "<div>  a  </div>";
-    print_r($errores);
 
-    //print_r($errores);
+
+  ;
     
 
     if (empty($errores)) {
@@ -158,11 +131,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     } else {
         // Si hay errores, muestra los mensajes y vuelve a cargar la página de registro
         foreach ($errores as $error) {
-           // echo '<div class="alert alert-danger mt-3" role="alert">' . $error . '</div>';
-           // print_r($error);
-            //print_r($errores);
-            //$_prueba =  '?' . $error;
-           // print_r($_prueba);
+       
         }
         $prueba = http_build_query($errores);
        

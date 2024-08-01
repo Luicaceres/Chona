@@ -28,7 +28,7 @@ $sql = "INSERT INTO product (name, price) VALUES('$Producto',$Precio)";
             $permitidos = array("image/jpg", "image/jpeg");
             if (in_array($_FILES['imagen']['type'], $permitidos)) {
     
-                print_r($_FILES);
+             
     
                 $info_img = pathinfo($_FILES['imagen']['name']);
                 $info_img['extension'];

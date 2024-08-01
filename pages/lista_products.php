@@ -9,7 +9,6 @@ if(!isset($_SESSION['loggedin'])) {
 }
 
 include "../php/conection.php";
-print_r($_SESSION);
 
 $dir ='../assets/img/';
 

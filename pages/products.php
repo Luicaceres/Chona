@@ -12,7 +12,7 @@ if(!isset($_SESSION['loggedin'])) {
 }
 
 include "../php/conection.php";
-print_r($_SESSION);
+
 $dir ='../assets/img/';
 
 ?>
@@ -118,7 +118,7 @@ while($r=$products->fetch_object()):
 	$found = false;
 
 	if(isset($_SESSION["cart"])){ foreach ($_SESSION["cart"] as $c) { if($c["product_id"]==$r->id){ $found=true; break; }}}
-	print_r($found);
+
 	
 	?>
 	<?php if($found):?>

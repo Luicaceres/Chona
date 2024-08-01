@@ -11,7 +11,7 @@ if(!isset($_SESSION['loggedin'])) {
 }
 
 include "../php/conection.php";
-print_r($_SESSION);
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -129,10 +129,7 @@ $r = $products->fetch_object();
 <?php else:?>
 	<p class="alert alert-warning">El carrito esta vacio.</p>
 	
-	</div>
-	<a class="btn btn-outline-danger" href="https://wa.me/584129025204?text=I'm%20inquiring%20about%20the%20apartment%20listing"><img alt="ws" src="../assets/logo/Digital_Glyph_Green.svg" width="100px" /> </a>
-	</div>
-
+	
 
 <?php endif;?>
 

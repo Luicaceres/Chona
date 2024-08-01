@@ -1,8 +1,7 @@
 <?php 
 session_start();
 include "../php/conection.php";
-//print_r($_POST);
-print_r($_SESSION);
+
 if(!empty($_POST)){
 echo "entro";
 $q1 = $con->query("insert into cart(client_email,created_at,id_usu) value(\"$_POST[email]\",NOW(),$_SESSION[id])");
@@ -40,7 +39,6 @@ $f = 0;
 
 while($r=$a->fetch_object()):
 
-    //print_r($r);
     $R_ID = $r->cantidad;
 	$R_PR = $r->price;
 	$R_PD = $r->name;
@@ -61,7 +59,7 @@ while($r=$a->fetch_object()):
     
     
 endwhile;
-//print_r($f);
+
 $productos=($g . ', total = $' .$f )  ;
 
 $nombre = $_SESSION['nombre'];

@@ -25,7 +25,7 @@ $sql = "UPDATE product SET  name = '$Producto', price = $Precio WHERE id =  $P "
           if ($_FILES['imagen']['error'] == UPLOAD_ERR_OK) {
             $permitidos = array("image/jpg", "image/jpeg");
             if (in_array($_FILES['imagen']['type'], $permitidos)) {
-                print_r($_FILES);
+                
                 $info_img = pathinfo($_FILES['imagen']['name']);
                 $info_img['extension'];
                 $poster = $dir.'/'.$P.'.jpg';

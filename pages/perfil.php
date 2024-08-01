@@ -9,10 +9,6 @@ if(!isset($_SESSION['loggedin'])) {
 }
 
 include "../php/conection.php";
-print_r($_SESSION);
-
-$dir ='../assets/img/';
-
 
 ?>
 
@@ -47,7 +43,7 @@ $dir ='../assets/img/';
     <div class="collapse navbar-collapse" id="navbarScroll">
       <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
 	  <?php
-			if($_SESSION['usu'] ===0){
+			if($_SESSION['usu'] ==='0'){
 			echo ' <li class="nav-item">
 				 <a class="nav-link color  sd " aria-current="page" href="./products.php" style="white">Productos</a>
        			 </li>';
@@ -62,7 +58,7 @@ $dir ='../assets/img/';
        
         
 		<?php
-			if($_SESSION['usu'] ===0){
+			if($_SESSION['usu'] ==='0'){
 			echo ' <li class="nav-item">
 		 	 <a class="nav-link sd color" href="./cart.php" style="white">Carrito</a>
        			 </li>';
@@ -104,33 +100,31 @@ $dir ='../assets/img/';
             unset($_SESSION['msg']);
         } ?>
 
-<div class="container"  style="height: 100%">
-	<div class="row">
+<div class="table-responsive"  >
+	<div class="row" >
 		<div class="col-md-12 mt-5 ">
                      
 
-              <div class="espacio"></div>
-              <a href="./agregar.php" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#NuevoModal"><i class="fa fa-plus-circle"></i> Agregar</a>
-              </div>
-              <hr>
-		<h2>Productos</h2>
+           
+		<h2>Perfil</h2>
 			
 			
 <?php
 /*
 * Esta es la consula para obtener todos los productos de la base de datos.
 */
-$products = $con->query("select * from product");
+$products = $con->query("select * from usuarios where ID  = $_SESSION[id]");
 ?>
 
+ 
 <!-- table-sm table-striped table-bordered table-condensed table-hover h5 -->
-<table class="table table-hover table-sm table-condensed  table-bordered table-responsive  h5" table-bordered table-sm  table-condensed table-hover  h5 " width="100%">
+<table class="table table-hover table-sm table-condensed  table-bordered table-responsive  h5"  >
 <thead class="table-info ">
-	<th>ID</th>
-	<th>Imagen</th>
-	<th>Producto</th>
-	<th>Precio</th>
-	<th>Accion</th>
+	<th scope="row">Nombre</th>
+	<th scope="row" >Telefono</th>
+	<th scope="row">Email</th>
+	<th scope="row">Ubicacion</th>
+	<th scope="row">Accion</th>
 </thead>
 <?php 
 /*
@@ -140,9 +134,9 @@ $products = $con->query("select * from product");
 while($r=$products->fetch_object()):;
 
 
-$R_ID = $r->id;
-$R_PR = $r->price;
-$R_PD = $r->name;
+$R_ID = $r->ID;
+//$R_PR = $r->price;
+//$R_PD = $r->name;
 
 
 
@@ -150,12 +144,13 @@ $R_PD = $r->name;
 ?>
 <tr>
 
-	<td ><?php echo $r->id;?></td>
-	<td> <img src= "<?php echo $dir . $R_ID; ?>.jpg" width="100px">  </td> 
-	<td><?php echo $r->name;?></td>
-	<td>$ <?php echo $r->price; ?></td>
-	<td> <a href="#" class="btn btn-sm btn-warning" name ="Cambiar" data-bs-toggle="modal" data-bs-target="#editarModal" data-bs-id="<?php echo $R_ID ;?>"><i class="fa fa-plus-circle"></i> Cambiar </a>
-	<a href="#" class="btn btn-sm btn-danger" name = "eliminar" data-bs-toggle="modal" data-bs-target="#eliminaModal" data-bs-id="<?php echo $R_ID ;?>" ><i class="fa fa-chain-broken"></i> Eliminar</a>
+	<!--td ><?php //echo $r->ID;?></td-->
+	<!--td> <img src= "<?php //echo $dir . $R_ID; ?>.jpg" width="100px">  </td--> 
+	<td ><?php echo $r->Nombre .' '. $r->Apellido ;?></td>
+	<td>0<?php echo $r->NumTelf; ?></td>
+	<td><?php echo $r->Email; ?></td>
+	<td><?php echo $r->Zona; ?></td>
+	<td> <a href="#" class="btn btn-sm btn-warning" name ="Cambiar" data-bs-toggle="modal" data-bs-target="#editarperfilModal" data-bs-id="<?php echo $R_ID ;?>"><i class="fa fa-plus-circle"></i> Editar </a>
 	</td>
 </tr>
 <?php endwhile; ?>
@@ -174,69 +169,53 @@ $R_PD = $r->name;
 </div>
 
 <?php
-       include "./agregar.php";
-       include "./editar.php";
-	   include "./Elimina.php";
+       
+       include "./editarPerfilModal.php";
+	
 ?>
 
 
 <script>
-        let NuevoModal = document.getElementById('NuevoModal')
-        let editarModal = document.getElementById('editarModal')
-        let eliminaModal = document.getElementById('eliminaModal')
+      
+        let editarperfilModal = document.getElementById('editarperfilModal')
+		
+       
+      
 
-        NuevoModal.addEventListener('shown.bs.modal', event => {
-			NuevoModal.querySelector('.modal-body #nombre').focus()
-        })
+			editarperfilModal.addEventListener('shown.bs.modal', event => {
+				let button = event.relatedTarget
+				let id = button.getAttribute('data-bs-id')
 
-    	 NuevoModal.addEventListener('hide.bs.modal', event => {
-			NuevoModal.querySelector('.modal-body #Producto').value = ""
-			NuevoModal.querySelector('.modal-body #Precio').value = ""
-			NuevoModal.querySelector('.modal-body #Imagen').value = ""
-         })
+				let inputId = editarperfilModal.querySelector('.modal-body #id')
+				let inputNombre = editarperfilModal.querySelector('.modal-body #Nombre')
+				let inputApellido = editarperfilModal.querySelector('.modal-body #Apellido')
+				let inputTelefono = editarperfilModal.querySelector('.modal-body #Telefono')
+				let inputEmail = editarperfilModal.querySelector('.modal-body #Email')
+				let inputZona = editarperfilModal.querySelector('.modal-body #Ubicacion')
 
-         editarModal.addEventListener('hide.bs.modal', event => {
-             editarModal.querySelector('.modal-body #nombre').value = ""
-             editarModal.querySelector('.modal-body #descripcion').value = ""
-             editaModal.querySelector('.modal-body #genero').value = ""
-             editarModal.querySelector('.modal-body #id_imagen').value = ""
-             editaModal.querySelector('.modal-body #Imagen').value = ""
-         })
+				
 
-        editarModal.addEventListener('shown.bs.modal', event => {
-            let button = event.relatedTarget
-            let id = button.getAttribute('data-bs-id')
+				let url = "../php/getperfil.php"
+				let formData = new FormData()
+				formData.append('id', id)
 
-            let inputId = editarModal.querySelector('.modal-body #id')
-            let inputProducto = editarModal.querySelector('.modal-body #Producto')
-            let inputPrecio = editarModal.querySelector('.modal-body #Precio')
-            let imagen = editarModal.querySelector('.modal-body #id_imagen')
+				fetch(url, {
+						method: "POST",
+						body: formData
+					}).then(response => response.json())
+					.then(data => {
 
-            let url = "../php/getprd.php"
-            let formData = new FormData()
-            formData.append('id', id)
+						inputId.value = data.ID
+						inputNombre.value  = data.Nombre
+						inputApellido.value =  data.Apellido
+						inputTelefono.value = data.NumTelf
+						inputEmail.value  =  data.Email
+						inputZona.value  =  data.Zona
+					}).catch(err => console.log(err))
 
-            fetch(url, {
-                    method: "POST",
-                    body: formData
-                }).then(response => response.json())
-                .then(data => {
+			})
 
-                    inputId.value = data.id
-                    inputProducto.value = data.name
-                    inputPrecio.value = data.price
-					imagen.src = '<?php echo "$dir";?>' + data.id + '.jpg'
-                 
 
-                }).catch(err => console.log(err))
-
-        })
-
-             eliminaModal.addEventListener('shown.bs.modal', event => {
-     		 let button = event.relatedTarget
-             let id = button.getAttribute('data-bs-id')
-             eliminaModal.querySelector('.modal-footer #id').value = id
-         })
     </script>
 
 

@@ -5,8 +5,6 @@ include "../php/conection.php";
 
 if(!isset($_SESSION['loggedin'])) {
 
-   // print_r($_GET);
-   // print_r($_SERVER["REQUEST_METHOD"]);
    
     
   
@@ -132,7 +130,8 @@ if(!isset($_SESSION['loggedin'])) {
 <script src="../slider/js-image-slider.js"></script>
     
     <?php }
-else { print_r($_SESSION);
+else { 
+
     
     header('Location: ./inicio.php'); 
     

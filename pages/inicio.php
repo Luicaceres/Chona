@@ -8,8 +8,7 @@ if(!isset($_SESSION['loggedin'])) {
        exit;
 }
 
-	print_r($_SESSION);
-	print_r($_SESSION['usu'])	;
+
 
 ?>
 
