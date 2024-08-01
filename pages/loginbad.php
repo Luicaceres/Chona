@@ -28,23 +28,12 @@
   
 
   <nav class="navbar navbar-expand-lg navbar-light bg-warning">
-		  <a class="navbar-brand" href="./index.php"><img src="../assets/logo/logo-chona.png" width="30px" height="30px" class="d-inline-block align-top"> <span style="color:white;  font-family: MV boli;">La tiendita de Chona</span></a>
+		  <a class="navbar-brand" href="../index.php"><img src="../assets/logo/logo-chona.png" width="30px" height="30px" class="d-inline-block align-top"> <span style="color:white;  font-family: MV boli;">La tiendita de Chona</span></a>
 		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 		    <span class="navbar-toggler-icon"></span>
 		  </button>
 
-		  <!--div class="collapse navbar-collapse" id="navbarNav">
-		    <ul class="navbar-nav">
-		      <li class="nav-item active">
-		      	<a class="nav-link active sd" href="./products.php" onclick="prueba()" style="white">Productos</a>
-		      </li>
-		      <li class="nav-item">
-		        <a class="nav-link sd" href="./cart.php" style="white">Carrito</a>
-		      </li>
-		     
-		    </ul>
-		  </div-->
-
+		
 </nav>
   
   <div class="d-flex align-items-center py-4 bg-body-tertiary">

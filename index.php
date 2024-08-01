@@ -20,7 +20,7 @@
 <nav class="navbar navbar-expand-lg bg-warning">
   <div class="container-fluid">
     
-	<a class="navbar-brand" href="inicio.php"><img src="./assets/logo/logo-chona.png" width="30px" height="30px" class="d-inline-block align-top">
+	<a class="navbar-brand" href="index.php"><img src="./assets/logo/logo-chona.png" width="30px" height="30px" class="d-inline-block align-top">
 	<span style="color:white;  font-family: MV boli;">La tiendita de Chona</span>
 	</a>
 	<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">

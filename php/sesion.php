@@ -25,12 +25,14 @@ if (mysqli_connect_error()) {
 }
 
 // Se valida si se ha enviado información, con la función isset()
+//print_r($_POST);
 
-if (!isset($_POST['imail'], $_POST['floatingPassword'])) {
+
+if (isset($_POST['imail'], $_POST['floatingPassword'])) {
 
     // si no hay datos muestra error y re direccionar
-  
-     header('Location: ../pages/index.php');
+   
+    header('Location: ../pages/loginbad.php');;
 }
 
 // evitar inyección sql
@@ -50,6 +52,20 @@ $stmt->store_result();
 if ($stmt->num_rows > 0) {
     $stmt->bind_result($id, $password);
     $stmt->fetch();
+
+
+    //print_r($stmt->fetch());
+    //print_r($password);
+    if (password_verify($_POST['floatingPassword'], $password)){
+        $v = 'paso' ;
+        echo "v es: '$v'" ;
+    } else{
+        $v= 'no paso 62' ;
+        echo "v es: '$v'" ;
+    };
+
+    print_r($_SESSION);
+
 
     // se confirma que la cuenta existe ahora validamos la contraseña
     
@@ -72,16 +88,19 @@ if ($stmt->num_rows > 0) {
         $_SESSION['num'] = ($resultado['NumTelf']);
         $_SESSION['Zona'] = ($resultado['Zona']);
         $_SESSION['usu'] = ($resultado['Tipusu']);
-        
-        header('Location: ../pages/inicio.php');
-    }
-} else {
+        echo "v es: '$v'" ;
+       header('Location: ../pages/inicio.php');
+    } else {
 
     // usuario incorrecto
+    echo "v es: '$v'" ;
     header('Location: ../pages/loginbad.php');
 
   
 
+    }
+
 }
+
 
 $stmt->close();

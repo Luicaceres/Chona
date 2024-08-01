@@ -43,9 +43,9 @@ print_r($_SESSION);
         <li class="nav-item">
 		  <a class="nav-link color  sd " aria-current="page" href="./products.php" style="white">Productos</a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
 		  <a class="nav-link sd color" href="./cart.php" style="white">Carrito</a>
-        </li>
+        </li> -->
 		
 		</ul>
 			<ul class="navbar-nav   navbar-nav-scroll ">
@@ -128,19 +128,27 @@ $r = $products->fetch_object();
 
 <?php else:?>
 	<p class="alert alert-warning">El carrito esta vacio.</p>
+	
+	</div>
+	<a class="btn btn-outline-danger" href="https://wa.me/584129025204?text=I'm%20inquiring%20about%20the%20apartment%20listing"><img alt="ws" src="../assets/logo/Digital_Glyph_Green.svg" width="100px" /> </a>
+	</div>
+
+
 <?php endif;?>
 
-<br><br><hr>
+<br>
+
+<br><hr>
+
+
+
 <p>Diseñada Por <a href="https://www.facebook.com/66shadow66" target="_blank">Luis Caceres</a></p>
 		</div>
 	</div>
 </div>
 
-
-<script src="../bootstrap/jquery-3.3.1.min.js"></script>
-<script type="text/javascript" src="../bootstrap/js/bootstrap.js"></script>
+<script src="../assets/bootstrap/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="../assets/bootstrap/js/bootstrap.js"></script>
 <script src="../slider/js-image-slider.js"></script>
-
-<script type="text/javascript" src="bootstrap/loadingoverlay.min.js"></script>
 </body>
 </html>
