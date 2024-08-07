@@ -13,7 +13,7 @@
 }
 
 #slider, #slider div.sliderInner {
-    width:80%;height:340px;/* Must be the same size as the slider images */
+    width:100%;height:340px;/* Must be the same size as the slider images */
     border-radius: 1px;
 }
 

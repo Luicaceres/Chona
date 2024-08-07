@@ -46,39 +46,51 @@
 		}
  ?>
 
-<div class="container" style="background: #F8F9E4; ">
-	<div class="row">
-		<div class="col-lg-12">
-		
-				<div id="sliderFrame" style="margin-top: 10px;">
-					
-					<div id="slider">
-						<a href="" target="_blank"><img src="./assets/img/verduras.jpg" alt="#cap1" /></a>
-						
-						<img src="./assets/img/carrito_de_compras_.png" class="img-rounded" alt="Verduras y hortalizas" width="304" height="236"> 
 
-					</div>
 
-				</div>
+<div class="container" style="background: #F8F9E4;">
 
-		</div>
-	</div>
-	<hr>
+                
+                <div id="carrito" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carrito" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carrito" data-bs-slide-to="1" aria-label="Slide 2"></button>
+       
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active" ata-bs-interval="5000">
+                    <img src="./assets/img/verduras.jpg" class="d-block w-100" >
+                    </div>
+                    <div class="carousel-item" ata-bs-interval="5000">
+                    <img src="./assets/img/carrito_de_compras.png" class="d-block w-100" >
+                    </div>
+                    
+                    
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carrito" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Anterior</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carrito" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Siguiente</span>
+                </button>
+                </div>
+    <hr>
 		<p>Diseñada Por <a href="https://www.facebook.com/66shadow66" target="_blank">Luis Caceres</a></p>
-
+		
 </div>
-
 
 <!-- DIVS QUE SE REFERENCIAN EN EL ALT DE LAS IMG -->
 	<div style="display: none;">
-		<div id="cap1">
-			Bienvenido a la <a href="http://www.google.com/">tiendita de Chona</a>.
+        <div id="cap1">
+            Bienvenido a la <a href="http://www.google.com/">tiendita de Chona</a>.
 		</div>
 	</div>
-
-<script src="./bootstrap/jquery-3.3.1.min.js"></script>
-<script type="text/javascript" src="./bootstrap/js/bootstrap.js"></script>
-<script src="./slider/js-image-slider.js"></script>
+    
+    <script src="./bootstrap/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="./bootstrap/js/bootstrap.js"></script>
+    <script src="./slider/js-image-slider.js"></script>
 
 </body>
 </html>
