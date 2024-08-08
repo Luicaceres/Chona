@@ -5,10 +5,16 @@ session_start();
 
 //credenciales de acceso a la base datos
 
-$DATABASE_HOST = 'localhost';
+/* $DATABASE_HOST = 'localhost';
 $DATABASE_USER = 'root';
 $DATABASE_PASS = '';
-$DATABASE_NAME = 'cartbasic1';
+$DATABASE_NAME = 'cartbasic1'; */
+
+
+$DATABASE_HOST = 'localhost';
+$DATABASE_USER = 'jonapisc_1';
+$DATABASE_PASS = 'jon102003123';
+$DATABASE_NAME = 'jonapisc_cartbasic1';
 
 // conexion a la base de datos
 
