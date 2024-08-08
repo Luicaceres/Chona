@@ -116,7 +116,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     
     
     $errores = validarformulario($datos, $con);
-    echo "<div>  a  </div>";
+    //echo "<div>  a  </div>";
 
 
   ;
