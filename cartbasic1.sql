@@ -38,28 +38,6 @@ CREATE TABLE `cart` (
 -- Volcado de datos para la tabla `cart`
 --
 
-INSERT INTO `cart` (`id`, `client_email`, `created_at`, `id_usu`) VALUES
-(36, 'luis_alexander_96@hotmail.com', '2024-07-31 17:41:02', 12),
-(37, 'luis_alexander_96@hotmail.com', '2024-07-31 17:41:47', 12),
-(38, 'luis_alexander_96@hotmail.com', '2024-07-31 17:44:09', 12),
-(39, 'luis_alexander_96@hotmail.com', '2024-07-31 18:12:57', 12),
-(40, 'luis_alexander_96@hotmail.com', '2024-07-31 18:16:07', 12),
-(41, 'luis_alexander_96@hotmail.com', '2024-07-31 18:21:20', 12),
-(42, 'luis_alexander_96@hotmail.com', '2024-07-31 18:21:43', 12),
-(43, 'luis_alexander_96@hotmail.com', '2024-07-31 18:22:42', 12),
-(44, 'luis_alexander_96@hotmail.com', '2024-07-31 18:22:53', 12),
-(45, 'luis_alexander_96@hotmail.com', '2024-07-31 18:25:11', 12),
-(46, 'luis_alexander_96@hotmail.com', '2024-07-31 18:25:43', 12),
-(47, 'luis_alexander_96@hotmail.com', '2024-07-31 18:25:53', 12),
-(48, 'luis_alexander_96@hotmail.com', '2024-07-31 18:25:56', 12),
-(49, 'luis_alexander_96@hotmail.com', '2024-07-31 18:26:15', 12),
-(50, 'luis_alexander_96@hotmail.com', '2024-07-31 18:27:13', 12),
-(51, 'luis_alexander_96@hotmail.com', '2024-07-31 20:07:02', 12),
-(52, 'luis_alexander_96@hotmail.com', '2024-07-31 20:07:47', 12),
-(53, 'luis_alexander_96@hotmail.com', '2024-07-31 20:08:40', 12),
-(54, 'luis_alexander_96@hotmail.com', '2024-07-31 20:10:38', 12),
-(55, 'luis_alexander_96@hotmail.com', '2024-07-31 20:12:08', 12),
-(56, 'luis_alexander_96@hotmail.com', '2024-07-31 20:13:02', 12);
 
 -- --------------------------------------------------------
 
@@ -78,60 +56,6 @@ CREATE TABLE `cart_product` (
 -- Volcado de datos para la tabla `cart_product`
 --
 
-INSERT INTO `cart_product` (`id`, `product_id`, `Cantidad`, `cart_id`) VALUES
-(9, 1, 1, 38),
-(10, 1, 1, 39),
-(11, 1, 1, 42),
-(12, 1, 1, 44),
-(13, 2, 1, 44),
-(14, 1, 1, 45),
-(15, 2, 1, 45),
-(16, 1, 1, 47),
-(17, 2, 1, 47),
-(18, 1, 1, 48),
-(19, 2, 1, 48),
-(20, 1, 1, 49),
-(21, 2, 1, 49),
-(22, 1, 1, 50),
-(23, 2, 1, 50),
-(24, 1, 1, 51),
-(25, 2, 1, 51),
-(26, 36, 1, 51),
-(27, 8, 1, 51),
-(28, 7, 1, 51),
-(29, 5, 1, 51),
-(30, 4, 1, 51),
-(31, 3, 1, 51),
-(32, 1, 1, 52),
-(33, 2, 1, 52),
-(34, 3, 1, 52),
-(35, 4, 1, 52),
-(36, 5, 1, 52),
-(37, 7, 1, 52),
-(38, 8, 1, 52),
-(39, 36, 1, 52),
-(40, 1, 1, 53),
-(41, 2, 1, 53),
-(42, 3, 1, 53),
-(43, 4, 1, 53),
-(44, 5, 1, 53),
-(45, 7, 1, 53),
-(46, 8, 1, 53),
-(47, 36, 1, 53),
-(48, 1, 1, 54),
-(49, 2, 1, 54),
-(50, 3, 1, 54),
-(51, 4, 1, 54),
-(52, 5, 1, 54),
-(53, 7, 1, 54),
-(54, 8, 1, 54),
-(55, 36, 1, 54),
-(56, 1, 1, 55),
-(57, 2, 1, 55),
-(58, 3, 1, 55),
-(59, 1, 1, 56),
-(60, 2, 1, 56),
-(61, 3, 1, 56);
 
 -- --------------------------------------------------------
 
@@ -181,10 +105,10 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`ID`, `Nombre`, `Apellido`, `NumTelf`, `Email`, `Zona`, `Tipusu`, `Password`) VALUES
-(12, 'Luis', 'Caceres', '4242878737', 'luis_alexander_96@hotmail.com', 'Casalta 2', 1, '$2y$10$D28HGQ2lGGbKymXUVAJZE.mliN9EWUwYKl30NqqG3Ujw2ClJmzRmG');
+(1, 'Admin', 'ROOT', '4242878737', 'Tienda@Chona.com', 'El Valle', 1, '$2y$10$D28HGQ2lGGbKymXUVAJZE.mliN9EWUwYKl30NqqG3Ujw2ClJmzRmG');
 
 --
--- √çndices para tablas volcadas
+-- √?ndices para tablas volcadas
 --
 
 --
@@ -223,25 +147,25 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT de la tabla `cart_product`
 --
 ALTER TABLE `cart_product`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT de la tabla `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- Restricciones para tablas volcadas
