@@ -30,21 +30,6 @@ if (isset($_POST['imail'], $_POST['floatingPassword'])) {
                     $stmt->fetch();
 
                     if (password_verify($_POST['floatingPassword'], $password)){
-                        $v = 'paso' ;
-                        echo "v es: '$v'" ;
-                    } else{
-                        $v= 'contraseña incorrecta' ;
-                        echo "v es: '$v'" ;
-                    };
-
-
-
-
-                    // se confirma que la cuenta existe ahora validamos la contraseña
-                    
-                    
-                    if (password_verify($_POST['floatingPassword'], $password)) {
-
                         $consulta=("Select * from usuarios WHERE id = $id ");
                         $sentencia=mysqli_query($con,$consulta);
                         $resultado= mysqli_fetch_array($sentencia);
@@ -65,25 +50,24 @@ if (isset($_POST['imail'], $_POST['floatingPassword'])) {
                         ob_clean();
                     header('Location: ../pages/inicio.php');
                     $stmt->close();
+                    } else{
+                        $v= 'contraseña incorrecta' ;
+                        echo "v es: '$v'" ;
+                        
+                        ob_clean();
+                        //$prueba = http_build_query($v);
+                        header("Location: ../pages/loginbad.php?$v");
+                        $stmt->close();                   
                     
-                    } else {
-
-                    // usuario incorrecto
-                    echo "v es: '$v'" ;
-                    ob_clean();
-                    //$prueba = http_build_query($v);
-                    header("Location: ../pages/loginbad.php?$v");
-                    $stmt->close();
-
-                
-
+                    
+                    
                     }
 
                 } else {
                     $stmt->close();
-                    echo "Por favor, completa todos los campos.";
+                    //echo "Por favor, completa todos los campos.";
                     $v = 'Usuario Incorrecto';
-                    echo "v es: '$v'";
+                    //echo "v es: '$v'";
                     ob_clean();
                     header("Location: ../pages/loginbad.php?$v");
                     exit;
