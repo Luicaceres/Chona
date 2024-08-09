@@ -46,13 +46,13 @@ if (isset($_POST['imail'], $_POST['floatingPassword'])) {
                         $_SESSION['num'] = ($resultado['NumTelf']);
                         $_SESSION['Zona'] = ($resultado['Zona']);
                         $_SESSION['usu'] = ($resultado['Tipusu']);
-                        echo "v es: '$v'" ;
+                        
                         ob_clean();
                     header('Location: ../pages/inicio.php');
                     $stmt->close();
                     } else{
                         $v= 'contraseña incorrecta' ;
-                        echo "v es: '$v'" ;
+                        
                         
                         ob_clean();
                         //$prueba = http_build_query($v);
@@ -79,7 +79,7 @@ if (isset($_POST['imail'], $_POST['floatingPassword'])) {
         // Al menos uno de los campos está vacío
         echo "Por favor, completa todos los campos.";
         $v = 'Por favor, completa todos los campos';
-        echo "v es: '$v'";
+        
         ob_clean();
         header("Location: ../pages/loginbad.php?$v");
         exit;
@@ -88,7 +88,7 @@ if (isset($_POST['imail'], $_POST['floatingPassword'])) {
     // Alguno de los campos no está definido
     echo "Faltan datos en el formulario.";
     $v = 'Faltan datos en el formulario.';
-    echo "v es: '$v'";
+    
     ob_clean();
     header("Location: ../pages/loginbad.php?$v");
     exit;

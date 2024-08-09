@@ -48,7 +48,7 @@
 </nav>
   
   <div class="d-flex align-items-center py-4 bg-body-tertiary">
-    <main class="form-signin w-100 m-auto   d-flex align-items-center py-4 bg-body-tertiary ">
+    <main class="form-signin m-auto   d-flex align-items-center py-4 bg-body-tertiary ">
       <form action= "../php/sesion.php" method="post">
         <div class = "contenedor-img">
           <img class="mb-3" src="../assets/logo/logo-chona.png" alt="" width="102px" height="87px">

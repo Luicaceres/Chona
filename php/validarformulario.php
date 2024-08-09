@@ -2,10 +2,6 @@
 session_start();
 include "../php/conection.php";
 
-
-
-
-
 function validarformulario($datos,$con) 
 {
    
@@ -57,7 +53,7 @@ function validarformulario($datos,$con)
                 $errores[] = "El número de teléfono debe tener 12 dígitos.";
             } else {
                 // Preparar la consulta para evitar inyecciones SQL
-                $stmt = $con->prepare("SELECT * FROM USUARIOS WHERE NumTelf = ?");
+                $stmt = $con->prepare("SELECT * FROM usuarios WHERE NumTelf = ?");
                 $stmt->bind_param("s", $datos['Numtlf']);
                 $stmt->execute();
                 $result = $stmt->get_result();
@@ -119,7 +115,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     //echo "<div>  a  </div>";
 
 
-  ;
+  
     
 
     if (empty($errores)) {
@@ -134,8 +130,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
        
         }
         $prueba = http_build_query($errores);
-       
- header("Location: ../pages/registro.php?$prueba");    
+     
+         header("Location: ../pages/registro.php?$prueba");    
     }
 }
 
