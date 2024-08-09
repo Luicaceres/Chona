@@ -8,7 +8,7 @@ include "../php/conection.php";
 
 function validarformulario($datos,$con) 
 {
-    echo "<div>  a  </div>";
+   
 
     $errores = [];
         
@@ -46,7 +46,7 @@ function validarformulario($datos,$con)
                      
                     }
             }
-                echo "numtelef";
+                
        
       
             if (empty($datos['Numtlf'])) {

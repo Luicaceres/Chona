@@ -44,9 +44,14 @@
 
           <h1 class="h3 mb-3 fw-normal m-auto">Inicia Seción nueva</h1>
         </div>
-        <div class="alert alert-danger" role="alert">
-          Credenciales de inicio invalidas
-        </div>
+        <?php
+       
+		if (isset($_GET))
+		{
+			foreach($_GET as $a => $b)
+			echo '<div class="alert alert-danger mt-3" role="alert">' .  $a  . ' </div>';
+		}
+ ?>
         <div class="form-floating">
           <input type="email" class="form-control" id="imail" name="imail" placeholder="name@example.com" require>
           <label for="imail">Correo Electronico</label>
